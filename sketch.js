@@ -14,7 +14,7 @@ function draw() {
                   3, 11, 1,  9, 
                   15, 7, 13, 5];
 
-  let cellWidth = threshold.length;
+  let cellWidth = threshold.length/2;
   let cellAmount = width / cellWidth;
 
   //Iterates over every "cell"
@@ -34,7 +34,7 @@ function draw() {
           let thresholdOffset = 256 / threshold.length;
           //if grayscale value of the pixel is greater than the threshold,
           //turn that pixel white
-          if (c <= threshold[k] * thresholdOffset) {
+          if (c > (threshold[k] * thresholdOffset)) {
             pixels[index + 0] = 255; //doesnt work
             pixels[index + 1] = 255;
             pixels[index + 2] = 255;
