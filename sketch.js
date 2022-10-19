@@ -37,7 +37,8 @@ function draw() {
           let pixelY = (cellY * cellWidth) + y;
 
           let index = (pixelX + pixelY * width) * 4;
-          let k = (x + y * cellWidth/16); //Not sure if this is going right...
+          //if you divide cellWidth by 16 you get a cool result
+          let k = (x + y * cellWidth/8); //Not sure if this is going right...
           // console.log(k);
           let c = grayscale(index);
           let thresholdOffset = 256 / threshold.length;
