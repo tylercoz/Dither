@@ -22,14 +22,14 @@ function draw() {
     for (let cellX = 0; cellX < cellAmount; cellX++) {
       rect(cellX * cellWidth, cellY * cellWidth, cellWidth, cellWidth);
       //iterates every pixel in a single cell
-      for (let y = 0; y < cellWidth; y++) {
-        for (let x = 0; x < cellWidth; x++) {
+      for (let y = 0; y < cellWidth/2; y++) {
+        for (let x = 0; x < cellWidth/2; x++) {
           let pixelX = (cellX * cellWidth) + x;
           let pixelY = (cellY * cellWidth) + y;
 
           let index = (pixelX + pixelY * width) * 4;
           let k = (x + y * cellWidth);
-
+          // console.log(k);
           let c = grayscale(index);
           let thresholdOffset = 256 / threshold.length;
           //if grayscale value of the pixel is greater than the threshold,
@@ -62,7 +62,7 @@ function grayscale(index) {
 }
 
 function preload() {
-  img = loadImage("assets/maxArt.jpg");
+  img = loadImage("assets/mountains.jpg");
 }
 
 /* NOTES
