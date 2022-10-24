@@ -8,7 +8,12 @@ function setup() {
   createCanvas(800, 800);
   pixelDensity(1);
 
-  video = createCapture(VIDEO);
+  video = createVideo("assets/ski.MOV", vidLoad);
+}
+
+function vidLoad() {
+  video.loop();
+  video.volume(0);
 }
 
 function dither() {
@@ -56,11 +61,11 @@ function dither() {
           //if grayscale value of the pixel is greater than the threshold,
           //turn that pixel white
           if (c > (threshold[k] * thresholdOffset)) {
-            pixels[index + 0] = 255; //doesnt work
+            pixels[index + 0] = 255;
             pixels[index + 1] = 255;
             pixels[index + 2] = 255;
           }
-          else {
+          else { //173, 216, 230
             pixels[index + 0] = 0;
             pixels[index + 1] = 0;
             pixels[index + 2] = 0;
