@@ -1,27 +1,38 @@
+let video;
+
+function preload() {
+  img = loadImage("assets/mountains.jpg");
+}
+
 function setup() {
   createCanvas(800, 800);
   pixelDensity(1);
-  //initial image
-  image(img, 0, 0, width, height);
+
+  video = createCapture(VIDEO);
 }
 
-function draw() {
-  // image(img, 0, 0, width, height);
+function dither() {
+  //put image on screen
+  image(video, 0, 0, width, height);
+  //take pixels from screen
   loadPixels();
-  
-  let threshold = [0, 8, 2, 10,
-                  12, 4, 14, 6,
-                  3, 11, 1,  9, 
-                  15, 7, 13, 5];
 
-  // let threshold= [0,48,12,60, 3,51,15,63,
-  //                 32,16,44,28,35,19,47,31,
-  //                  8,56, 4,52,11,59, 7,55,
-  //                 40,24,36,20,43,27,39,23,
-  //                  2,50,14,62, 1,49,13,61,
-  //                 34,18,46,30,33,17,45,29,
-  //                 10,58, 6,54, 9,57, 5,53,
-  //                 42,26,38,22,41,25,37,21];
+  // let threshold = [0, 3, 
+  //                  1, 2];
+  
+  // let threshold = [0, 8, 2, 10,
+  //                 12, 4, 14, 6,
+  //                 3, 11, 1,  9, 
+  //                 15, 7, 13, 5];
+
+  let threshold= [0,48,12,60, 3,51,15,63,
+                  32,16,44,28,35,19,47,31,
+                   8,56, 4,52,11,59, 7,55,
+                  40,24,36,20,43,27,39,23,
+                   2,50,14,62, 1,49,13,61,
+                  34,18,46,30,33,17,45,29,
+                  10,58, 6,54, 9,57, 5,53,
+                  42,26,38,22,41,25,37,21];
 
   let cellWidth = Math.sqrt(threshold.length);
   let cellAmount = width / cellWidth;
@@ -60,7 +71,10 @@ function draw() {
     }
   }
   updatePixels();
-  
+}
+
+function draw() {
+  dither();
 }
 
 function grayscale(index) {
@@ -70,20 +84,3 @@ function grayscale(index) {
   //return avg of 3 colors (grayscale value)
   return (r + g + b) / 3;
 }
-
-function preload() {
-  img = loadImage("assets/mountains.jpg");
-}
-
-/* NOTES
-//initial image
-  // image(img, 0, 0, width, height);
-
-  let threshold = [0, 8, 2, 10,
-                  12, 4, 14, 6,
-                  3, 11, 1,  9, 
-                  15, 7, 13, 5];
-  let mapSize = threshold.length;
-  //256 / mapSize = threshold for each array item
-  //currThreshold[k] = threshold[k] * 256/mapSize
-*/
